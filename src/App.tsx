@@ -86,7 +86,6 @@ export default function App() {
   const [introClosing, setIntroClosing] = useState(false);
   const [musicOpen, setMusicOpen] = useState(false);
   const [photoError, setPhotoError] = useState(false);
-  const [localPhotosSelected, setLocalPhotosSelected] = useState(false);
   const [localPhotoFiles, setLocalPhotoFiles] = useState<SavedPhoto[]>([]);
   const localSelectionRef = useRef(false);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
