@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState, type ChangeEvent } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 
 const captions = [
@@ -14,72 +14,6 @@ const captions = [
   'Semoga masih banyak kenangan yang bisa kita abadikan bersama. 🤍',
 ];
 
-type SavedPhoto = {
-  name: string;
-  blob: Blob;
-};
-
-function openPhotoDB(): Promise<IDBDatabase> {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open('ANANTA_PhotoDB', 1);
-
-    request.onupgradeneeded = () => {
-      const db = request.result;
-
-      if (!db.objectStoreNames.contains('photos')) {
-        db.createObjectStore('photos');
-      }
-    };
-
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
-  });
-}
-
-async function getSavedPhotos(): Promise<SavedPhoto[]> {
-  const db = await openPhotoDB();
-
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction('photos', 'readonly');
-    const request = transaction.objectStore('photos').get('gallery');
-
-    request.onsuccess = () => {
-      resolve(request.result || []);
-      db.close();
-    };
-
-    request.onerror = () => {
-      reject(request.error);
-      db.close();
-    };
-  });
-}
-
-async function savePhotosToDB(photos: SavedPhoto[]): Promise<void> {
-  const db = await openPhotoDB();
-
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction('photos', 'readwrite');
-
-    transaction.objectStore('photos').put(photos, 'gallery');
-
-    transaction.oncomplete = () => {
-      db.close();
-      resolve();
-    };
-
-    transaction.onerror = () => {
-      db.close();
-      reject(transaction.error);
-    };
-
-    transaction.onabort = () => {
-      db.close();
-      reject(transaction.error);
-    };
-  });
-}
-
 export default function App() {
   const [photos, setPhotos] = useState<string[]>([]);
   const [letter, setLetter] = useState(false);
@@ -87,9 +21,6 @@ export default function App() {
   const [introClosing, setIntroClosing] = useState(false);
   const [musicOpen, setMusicOpen] = useState(false);
   const [photoError, setPhotoError] = useState(false);
-  const [localPhotoFiles, setLocalPhotoFiles] = useState<SavedPhoto[]>([]);
-  const localSelectionRef = useRef(false);
-  const [, setLocalPhotosSelected] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [slideshow, setSlideshow] = useState(false);
 
@@ -155,31 +86,12 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-
-  // MEMUAT FOTO TERSIMPAN ATAU DARI GITHUB
+  // MEMUAT FOTO LANGSUNG DARI GITHUB
   useEffect(() => {
     let cancelled = false;
 
     async function loadGallery() {
       try {
-        const savedPhotos = await getSavedPhotos();
-
-        if (cancelled || localSelectionRef.current) return;
-
-        if (savedPhotos.length > 0) {
-          const limitedPhotos = savedPhotos.slice(0, 9);
-
-          setLocalPhotoFiles(limitedPhotos);
-          setLocalPhotosSelected(true);
-          localSelectionRef.current = true;
-
-          setPhotos(
-            limitedPhotos.map((photo) => URL.createObjectURL(photo.blob))
-          );
-
-          return;
-        }
-
         const response = await fetch(
           'https://api.github.com/repos/buluk2kd/musik-ananta/contents/'
         );
@@ -193,13 +105,14 @@ export default function App() {
         const images = files
           .filter(
             (file: any) =>
-              file.type === 'file' && /\.(jpg|jpeg|png|webp)$/i.test(file.name)
+              file.type === 'file' &&
+              /\.(jpg|jpeg|png|webp)$/i.test(file.name)
           )
           .sort((a: any, b: any) => a.name.localeCompare(b.name))
           .slice(0, 9)
           .map((file: any) => file.download_url);
 
-        if (cancelled || localSelectionRef.current) return;
+        if (cancelled) return;
 
         setPhotos(images);
 
@@ -209,7 +122,7 @@ export default function App() {
       } catch (error) {
         console.error(error);
 
-        if (!cancelled && !localSelectionRef.current) {
+        if (!cancelled) {
           setPhotoError(true);
         }
       }
