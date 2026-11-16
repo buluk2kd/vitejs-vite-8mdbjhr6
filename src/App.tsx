@@ -409,11 +409,6 @@ export default function App() {
           alasan untuk dikenang.
         </p>
 
-        <label className="photo-upload">
-          + PILIH FOTO DARI LAPTOP
-          <input type="file" accept="image/*" onChange={choosePhotos} hidden />
-        </label>
-
         {photos.length > 0 ? (
           <div className="gallery">
             {photos.map((photo, index) => (
