@@ -155,39 +155,6 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  // MEMILIH FOTO DARI LAPTOP
-  function choosePhotos(event: ChangeEvent<HTMLInputElement>) {
-    const files = Array.from(event.currentTarget.files || []).filter((file) =>
-      file.type.startsWith('image/')
-    );
-
-    event.currentTarget.value = '';
-
-    if (files.length === 0) return;
-
-    const previousPhotos = localSelectionRef.current ? localPhotoFiles : [];
-
-    const combinedPhotos = [
-      ...previousPhotos,
-      ...files.map((file) => ({
-        name: file.name,
-        blob: file,
-      })),
-    ].slice(0, 9);
-
-    localSelectionRef.current = true;
-
-    setLocalPhotosSelected(true);
-    setLocalPhotoFiles(combinedPhotos);
-
-    setPhotos(combinedPhotos.map((photo) => URL.createObjectURL(photo.blob)));
-
-    setPhotoError(false);
-
-    savePhotosToDB(combinedPhotos).catch((error) => {
-      console.error('Gagal menyimpan foto:', error);
-    });
-  }
 
   // MEMUAT FOTO TERSIMPAN ATAU DARI GITHUB
   useEffect(() => {
