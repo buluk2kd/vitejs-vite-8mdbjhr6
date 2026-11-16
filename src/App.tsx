@@ -88,6 +88,7 @@ export default function App() {
   const [photoError, setPhotoError] = useState(false);
   const [localPhotoFiles, setLocalPhotoFiles] = useState<SavedPhoto[]>([]);
   const localSelectionRef = useRef(false);
+  const [, setLocalPhotosSelected] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [slideshow, setSlideshow] = useState(false);
   const selectedPhotoIndex = photos.indexOf(selectedPhoto || '');
