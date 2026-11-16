@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import './App.css';
 
@@ -91,66 +92,70 @@ export default function App() {
   const [, setLocalPhotosSelected] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [slideshow, setSlideshow] = useState(false);
+
   const selectedPhotoIndex = photos.indexOf(selectedPhoto || '');
 
-function showPreviousPhoto() {
-  if (photos.length === 0) return;
+  // FOTO SEBELUMNYA
+  function showPreviousPhoto() {
+    if (photos.length === 0) return;
 
-  const previousIndex =
-    (selectedPhotoIndex - 1 + photos.length) % photos.length;
+    const previousIndex =
+      (selectedPhotoIndex - 1 + photos.length) % photos.length;
 
-  setSelectedPhoto(photos[previousIndex]);
-}
+    setSelectedPhoto(photos[previousIndex]);
+  }
 
-function showNextPhoto() {
+  // FOTO BERIKUTNYA
+  function showNextPhoto() {
+    if (photos.length === 0) return;
+
+    const nextIndex = (selectedPhotoIndex + 1) % photos.length;
+
+    setSelectedPhoto(photos[nextIndex]);
+  }
+
   // SLIDESHOW OTOMATIS
-useEffect(() => {
-  if (!slideshow || !selectedPhoto || photos.length < 2) return;
+  useEffect(() => {
+    if (!slideshow || !selectedPhoto || photos.length < 2) return;
 
-  const timer = window.setInterval(() => {
-    setSelectedPhoto((current) => {
-      const index = photos.indexOf(current || '');
-      const nextIndex = (index + 1) % photos.length;
+    const timer = window.setInterval(() => {
+      setSelectedPhoto((current) => {
+        const index = photos.indexOf(current || '');
+        const nextIndex = (index + 1) % photos.length;
 
-      return photos[nextIndex];
-    });
-  }, 3000);
-
-  return () => window.clearInterval(timer);
-}, [slideshow, selectedPhoto, photos]);
-  if (photos.length === 0) return;
-
-  const nextIndex = (selectedPhotoIndex + 1) % photos.length;
-
-  setSelectedPhoto(photos[nextIndex]);
-}
-  // ANIMASI SAAT SCROLL
-useEffect(() => {
-  const elements = document.querySelectorAll(
-    '.about, .gallery-section, .quote, .letter'
-  );
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
+        return photos[nextIndex];
       });
-    },
-    {
-      threshold: 0.12,
-    }
-  );
+    }, 3000);
 
-  elements.forEach((element) => observer.observe(element));
+    return () => window.clearInterval(timer);
+  }, [slideshow, selectedPhoto, photos]);
 
-  return () => observer.disconnect();
-}, []);
+  // ANIMASI SAAT SCROLL
+  useEffect(() => {
+    const elements = document.querySelectorAll(
+      '.about, .gallery-section, .quote, .letter'
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+      }
+    );
+
+    elements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
 
   // MEMILIH FOTO DARI LAPTOP
-
   function choosePhotos(event: ChangeEvent<HTMLInputElement>) {
     const files = Array.from(event.currentTarget.files || []).filter((file) =>
       file.type.startsWith('image/')
@@ -259,7 +264,7 @@ useEffect(() => {
     <div className="website">
       {/* PEMBUKA KHUSUS TIARA */}
       {intro && (
-      <div className={`intro-screen ${introClosing ? 'intro-closing' : ''}`}>
+        <div className={`intro-screen ${introClosing ? 'intro-closing' : ''}`}>
           <p className="intro-label">SEBUAH CERITA TENTANG KITA</p>
 
           <h1>
@@ -273,13 +278,13 @@ useEffect(() => {
           </p>
 
           <button
-  onClick={() => {
-    setIntroClosing(true);
-    setTimeout(() => setIntro(false), 900);
-  }}
->
-  BUKA CERITA KITA ♡
-</button>
+            onClick={() => {
+              setIntroClosing(true);
+              setTimeout(() => setIntro(false), 900);
+            }}
+          >
+            BUKA CERITA KITA ♡
+          </button>
 
           <span className="intro-footer">DENGAN KASIH, UNTUKMU.</span>
         </div>
@@ -404,7 +409,6 @@ useEffect(() => {
           alasan untuk dikenang.
         </p>
 
-        {/* TOMBOL PILIH FOTO */}
         <label className="photo-upload">
           + PILIH FOTO DARI LAPTOP
           <input type="file" accept="image/*" onChange={choosePhotos} hidden />
@@ -438,69 +442,68 @@ useEffect(() => {
           </p>
         )}
       </section>
-      
 
-{/* FOTO UKURAN BESAR */}
-{selectedPhoto && (
-  <div
-    className="photo-lightbox"
-    onClick={() => {
-      setSelectedPhoto(null);
-      setSlideshow(false);
-    }}
-  >
-    <button
-      className="lightbox-close"
-      onClick={() => {
-        setSelectedPhoto(null);
-        setSlideshow(false);
-      }}
-    >
-      ×
-    </button>
+      {/* FOTO UKURAN BESAR */}
+      {selectedPhoto && (
+        <div
+          className="photo-lightbox"
+          onClick={() => {
+            setSelectedPhoto(null);
+            setSlideshow(false);
+          }}
+        >
+          <button
+            className="lightbox-close"
+            onClick={() => {
+              setSelectedPhoto(null);
+              setSlideshow(false);
+            }}
+          >
+            ×
+          </button>
 
-    <button
-      className="lightbox-nav lightbox-prev"
-      onClick={(event) => {
-        event.stopPropagation();
-        showPreviousPhoto();
-      }}
-    >
-      ‹
-    </button>
+          <button
+            className="lightbox-nav lightbox-prev"
+            onClick={(event) => {
+              event.stopPropagation();
+              showPreviousPhoto();
+            }}
+          >
+            ‹
+          </button>
 
-    <img
-      key={selectedPhoto}
-      src={selectedPhoto}
-      alt="Kenangan Tiara ukuran besar"
-      onClick={(event) => event.stopPropagation()}
-    />
+          <img
+            key={selectedPhoto}
+            src={selectedPhoto}
+            alt="Kenangan Tiara ukuran besar"
+            onClick={(event) => event.stopPropagation()}
+          />
 
-    <button
-      className="lightbox-nav lightbox-next"
-      onClick={(event) => {
-        event.stopPropagation();
-        showNextPhoto();
-      }}
-    >
-      ›
-    </button>
+          <button
+            className="lightbox-nav lightbox-next"
+            onClick={(event) => {
+              event.stopPropagation();
+              showNextPhoto();
+            }}
+          >
+            ›
+          </button>
 
-    <div
-      className="slideshow-controls"
-      onClick={(event) => event.stopPropagation()}
-    >
-      <p>
-        {String(selectedPhotoIndex + 1).padStart(2, '0')} /{' '}
-        {String(photos.length).padStart(2, '0')}
-      </p>
+          <div
+            className="slideshow-controls"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <p>
+              {String(selectedPhotoIndex + 1).padStart(2, '0')} /{' '}
+              {String(photos.length).padStart(2, '0')}
+            </p>
 
-      <button onClick={() => setSlideshow((value) => !value)}>
-        {slideshow ? 'Ⅱ Jeda Slideshow' : '▶ Putar Slideshow'}
-      </button>
-    </div>
-  </div>
-)}
+            <button onClick={() => setSlideshow((value) => !value)}>
+              {slideshow ? 'Ⅱ Jeda Slideshow' : '▶ Putar Slideshow'}
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* KUTIPAN */}
       <section className="quote">
@@ -551,7 +554,7 @@ useEffect(() => {
             <br />
             <br />
             Oh iya, Ndut, jangan lupa makan, tetapi jangan semuanya dimakan
-            sendirian. 
+            sendirian.
             <br />
             <br />
             Semoga kisah kita menjadi aksara yang tak bosan ditulis oleh waktu.

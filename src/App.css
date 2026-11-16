@@ -1047,3 +1047,695 @@ footer small {
   background: #c5a572;
   color: #171717;
 }
+
+/* =========================
+   ANANTA — FLORAL DECORATION
+========================= */
+
+body::before,
+body::after {
+  position: fixed;
+  z-index: 5;
+  pointer-events: none;
+  white-space: pre-line;
+  font-family: Georgia, serif;
+  color: #c5a77c;
+  opacity: 0.38;
+  line-height: 1.8;
+  text-shadow: 0 0 15px rgba(197, 167, 124, 0.2);
+}
+
+body::before {
+  content: "✿\A  ❀\A    ✧";
+  top: 95px;
+  left: 13px;
+  font-size: 27px;
+  transform: rotate(-18deg);
+}
+
+body::after {
+  content: "❀\A  ✿\A    ✧";
+  right: 13px;
+  bottom: 35px;
+  font-size: 30px;
+  transform: rotate(18deg);
+}
+
+/* Bunga tambahan pada area terang */
+.about,
+.gallery-section,
+.letter {
+  position: relative;
+}
+
+.about::after,
+.gallery-section::after,
+.letter::after {
+  position: absolute;
+  content: "✧  ❀";
+  right: 8%;
+  top: 45px;
+  color: #b69b70;
+  opacity: 0.35;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  pointer-events: none;
+}
+
+/* Penyesuaian layar HP */
+@media (max-width: 700px) {
+  body::before {
+    top: 90px;
+    left: 5px;
+    font-size: 20px;
+  }
+
+  body::after {
+    right: 5px;
+    bottom: 20px;
+    font-size: 22px;
+  }
+
+  .about::after,
+  .gallery-section::after,
+  .letter::after {
+    right: 6%;
+    top: 30px;
+    font-size: 19px;
+  }
+}
+
+/* =========================
+   ANANTA — EXTRA FLORAL ORNAMENTS
+========================= */
+
+/* Dekorasi pada halaman pembuka */
+.intro-screen::before,
+.intro-screen::after {
+  position: absolute;
+  content: "✿  ❀  ✧";
+  color: #c5a77c;
+  opacity: 0.45;
+  font-family: Georgia, serif;
+  font-size: 27px;
+  pointer-events: none;
+}
+
+.intro-screen::before {
+  top: 15%;
+  left: 9%;
+  transform: rotate(-25deg);
+}
+
+.intro-screen::after {
+  right: 9%;
+  bottom: 16%;
+  transform: rotate(25deg);
+}
+
+/* Dekorasi hero */
+header::before,
+header::after {
+  position: absolute;
+  content: "❀";
+  color: #c5a77c;
+  opacity: 0.3;
+  font-family: Georgia, serif;
+  pointer-events: none;
+}
+
+header::before {
+  top: 65px;
+  right: 13%;
+  font-size: 48px;
+  transform: rotate(20deg);
+}
+
+header::after {
+  bottom: 130px;
+  left: 5%;
+  font-size: 30px;
+  transform: rotate(-20deg);
+}
+
+/* Ornamen di area galeri */
+.gallery-section::before {
+  position: absolute;
+  content: "✿  ✧  ❀";
+  top: 18px;
+  left: 8%;
+  color: #b69b70;
+  opacity: 0.35;
+  font-family: Georgia, serif;
+  font-size: 22px;
+  pointer-events: none;
+}
+
+/* Dekorasi kutipan */
+.quote {
+  position: relative;
+  overflow: hidden;
+}
+
+.quote::before,
+.quote::after {
+  position: absolute;
+  content: "❀";
+  color: #c5a77c;
+  opacity: 0.22;
+  font-family: Georgia, serif;
+  pointer-events: none;
+}
+
+.quote::before {
+  top: 25px;
+  left: 8%;
+  font-size: 55px;
+  transform: rotate(-20deg);
+}
+
+.quote::after {
+  right: 8%;
+  bottom: 20px;
+  font-size: 45px;
+  transform: rotate(20deg);
+}
+
+/* Dekorasi footer */
+footer {
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: "✧  ❀  ✧";
+  display: block;
+  margin-bottom: 18px;
+  color: #c5a77c;
+  opacity: 0.6;
+  font-size: 22px;
+  letter-spacing: 8px;
+}
+
+/* Penyesuaian layar HP */
+@media (max-width: 700px) {
+  .intro-screen::before {
+    left: 5%;
+    font-size: 20px;
+  }
+
+  .intro-screen::after {
+    right: 5%;
+    font-size: 20px;
+  }
+
+  header::before {
+    top: 35px;
+    right: 7%;
+    font-size: 32px;
+  }
+
+  header::after {
+    left: 3%;
+    font-size: 23px;
+  }
+
+  .quote::before {
+    left: 3%;
+    font-size: 35px;
+  }
+
+  .quote::after {
+    right: 3%;
+    font-size: 30px;
+  }
+}
+
+/* =====================================
+   ANANTA — ROMANTIC BOTANICAL EDITION
+===================================== */
+
+/* Ornamen bunga di seluruh halaman */
+.website {
+  position: relative;
+  isolation: isolate;
+}
+
+.website::before,
+.website::after {
+  position: fixed;
+  z-index: 4;
+  pointer-events: none;
+  color: #b69b70;
+  opacity: 0.35;
+  font-family: Georgia, serif;
+  font-size: 24px;
+  line-height: 2;
+  white-space: pre-line;
+}
+
+.website::before {
+  content: "❀\A  ✧\A    ❁";
+  top: 32%;
+  left: 12px;
+  transform: rotate(-15deg);
+}
+
+.website::after {
+  content: "❁\A  ✧\A    ❀";
+  top: 65%;
+  right: 12px;
+  transform: rotate(15deg);
+}
+
+/* Garis dekoratif elegan */
+.about,
+.gallery-section,
+.letter {
+  border-top: 1px solid rgba(182, 155, 112, 0.2);
+}
+
+.about::before,
+.gallery-section::before,
+.letter::before {
+  content: "✧  ❀  ✧";
+  display: block;
+  width: fit-content;
+  margin: 0 auto 30px;
+  color: #b69b70;
+  opacity: 0.65;
+  font-size: 22px;
+  letter-spacing: 9px;
+}
+
+/* Judul dengan garis kecil */
+section h2 {
+  position: relative;
+  display: inline-block;
+}
+
+section h2::after {
+  content: "";
+  display: block;
+  width: 65px;
+  height: 1px;
+  margin-top: 17px;
+  background: #b69b70;
+  opacity: 0.65;
+}
+
+/* Hero lebih artistik */
+header {
+  overflow: hidden;
+}
+
+header::before {
+  content: "❀";
+  position: absolute;
+  right: 13%;
+  top: 70px;
+  color: #c5a77c;
+  opacity: 0.35;
+  font-size: 75px;
+  transform: rotate(20deg);
+  pointer-events: none;
+}
+
+header::after {
+  content: "✧  ❁  ✧";
+  position: absolute;
+  right: 12%;
+  bottom: 45px;
+  color: #c5a77c;
+  opacity: 0.5;
+  font-size: 25px;
+  letter-spacing: 10px;
+  pointer-events: none;
+}
+
+/* Galeri seperti bingkai foto */
+.photo {
+  border: 5px solid #f7f5f0;
+  outline: 1px solid rgba(182, 155, 112, 0.35);
+  outline-offset: 4px;
+  box-shadow: 0 12px 30px rgba(40, 30, 20, 0.07);
+}
+
+.photo-card h3::before {
+  content: "✧ ";
+  color: #b69b70;
+  font-size: 13px;
+}
+
+/* Dekorasi area kutipan */
+.quote {
+  border-top: 1px solid rgba(197, 167, 124, 0.35);
+  border-bottom: 1px solid rgba(197, 167, 124, 0.35);
+}
+
+.quote > span {
+  display: inline-block;
+  color: #c5a77c;
+  opacity: 0.8;
+}
+
+.quote p::before,
+.quote p::after {
+  content: " ✧ ";
+  color: #c5a77c;
+}
+
+/* Surat rahasia */
+.message {
+  position: relative;
+  border: 1px solid rgba(182, 155, 112, 0.35);
+  box-shadow: 0 15px 40px rgba(40, 30, 20, 0.05);
+}
+
+.message::before {
+  content: "❀";
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  color: #b69b70;
+  opacity: 0.45;
+  font-size: 23px;
+}
+
+/* Tombol dengan nuansa emas */
+.letter button,
+.photo-upload {
+  border-color: #b69b70;
+  letter-spacing: 1.5px;
+}
+
+.letter button:hover,
+.photo-upload:hover {
+  box-shadow: 0 8px 25px rgba(182, 155, 112, 0.2);
+}
+
+/* Footer floral */
+footer {
+  border-top: 1px solid rgba(197, 167, 124, 0.3);
+}
+
+footer h2::before {
+  content: "❀ ";
+  color: #c5a77c;
+  font-size: 17px;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .website::before,
+  .website::after {
+    font-size: 17px;
+    opacity: 0.25;
+  }
+
+  .website::before {
+    left: 3px;
+  }
+
+  .website::after {
+    right: 3px;
+  }
+
+  header::before {
+    right: 7%;
+    top: 35px;
+    font-size: 45px;
+  }
+
+  header::after {
+    right: 5%;
+    font-size: 18px;
+  }
+
+  .photo {
+    border-width: 3px;
+    outline-offset: 3px;
+  }
+
+  .about::before,
+  .gallery-section::before,
+  .letter::before {
+    margin-bottom: 22px;
+    font-size: 18px;
+  }
+}
+
+/* ANANTA — MINIMAL ELEGANT PHOTO FRAME */
+
+.photo-card {
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.photo-card::before {
+  display: none;
+}
+
+.photo {
+  padding: 5px;
+  height: 340px;
+  background: #fdfbf6;
+  border: 1px solid #c5a77c;
+  outline: none;
+  box-shadow: 0 8px 22px rgba(30, 25, 18, 0.08);
+  overflow: hidden;
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid rgba(182, 155, 112, 0.2);
+}
+
+.photo-card:hover .photo {
+  box-shadow: 0 12px 28px rgba(30, 25, 18, 0.13);
+}
+
+@media (max-width: 700px) {
+  .photo {
+    height: 230px;
+    padding: 4px;
+  }
+}
+
+@media (max-width: 400px) {
+  .photo {
+    height: 320px;
+  }
+}
+
+/* ANANTA — PREMIUM GALLERY FINISH */
+
+.gallery {
+  column-gap: 35px;
+  row-gap: 65px;
+}
+
+.photo-card {
+  transition: transform 0.45s ease;
+}
+
+.photo-card:hover {
+  transform: translateY(-6px);
+}
+
+.photo-card:nth-child(even):hover {
+  transform: translateY(24px);
+}
+
+.photo {
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.photo-card:hover .photo {
+  border-color: #b69b70;
+  box-shadow: 0 15px 35px rgba(45, 35, 20, 0.13);
+}
+
+.photo-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  letter-spacing: 0.4px;
+  margin-top: 22px;
+  margin-bottom: 9px;
+}
+
+.photo-card h3::after {
+  content: "";
+  display: block;
+  width: 35px;
+  height: 1px;
+  background: #b69b70;
+  margin-top: 9px;
+}
+
+.photo-card p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #81786e;
+}
+
+@media (max-width: 700px) {
+  .gallery {
+    column-gap: 15px;
+    row-gap: 40px;
+  }
+
+  .photo-card h3 {
+    font-size: 17px;
+    margin-top: 15px;
+  }
+
+  .photo-card p {
+    font-size: 10px;
+  }
+}
+
+/* ANANTA — SOFT LUXURY BACKGROUND */
+
+/* Bagian tentang Tiara */
+.about {
+  background:
+    radial-gradient(ellipse at 90% 15%,
+      rgba(197, 167, 124, 0.10),
+      transparent 35%),
+    #f7f7f5;
+}
+
+/* Bagian galeri */
+.gallery-section {
+  background:
+    radial-gradient(ellipse at 10% 10%,
+      rgba(197, 167, 124, 0.12),
+      transparent 35%),
+    #eeece7;
+}
+
+/* Bagian surat */
+.letter {
+  background:
+    radial-gradient(ellipse at 50% 100%,
+      rgba(197, 167, 124, 0.13),
+      transparent 45%),
+    #f7f7f5;
+}
+
+/* Garis pemisah bagian */
+.about,
+.gallery-section,
+.letter {
+  border-top: 1px solid rgba(182, 155, 112, 0.25);
+}
+
+/* Efek cahaya lembut pada tombol */
+.photo-upload,
+.letter button {
+  transition: all 0.35s ease;
+}
+
+.photo-upload:hover,
+.letter button:hover {
+  box-shadow: 0 8px 25px rgba(182, 155, 112, 0.2);
+}
+
+/* Detail warna emas pada navigasi */
+nav {
+  border-bottom: 1px solid rgba(182, 155, 112, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* Garis emas di bagian bawah footer */
+footer {
+  border-top: 1px solid rgba(197, 167, 124, 0.35);
+}
+
+/* =================================
+   ANANTA — ROMANTIC INTRO PREMIUM
+================================= */
+
+.intro-screen {
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(197, 167, 124, 0.13),
+      transparent 45%
+    ),
+    #171717;
+  overflow: hidden;
+}
+
+/* Bingkai tipis di halaman pembuka */
+.intro-screen::before {
+  content: "";
+  position: absolute;
+  inset: 22px;
+  border: 1px solid rgba(197, 167, 124, 0.25);
+  pointer-events: none;
+}
+
+/* Ornamen bunga */
+.intro-screen::after {
+  content: "✧  ❀  ✧";
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #c5a77c;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  letter-spacing: 12px;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+/* Judul */
+.intro-screen h1 {
+  text-shadow: 0 0 35px rgba(197, 167, 124, 0.13);
+  letter-spacing: 3px;
+}
+
+/* Garis dekorasi nama */
+.intro-name::before,
+.intro-name::after {
+  content: "✧";
+  color: #c5a77c;
+  margin: 0 12px;
+}
+
+/* Tombol pembuka */
+.intro-screen button {
+  border-radius: 30px;
+  padding: 16px 36px;
+  letter-spacing: 3px;
+  box-shadow: 0 0 25px rgba(197, 167, 124, 0.06);
+}
+
+/* Keterangan bawah */
+.intro-footer {
+  color: #a99a82;
+  letter-spacing: 5px;
+}
+
+@media (max-width: 700px) {
+  .intro-screen::before {
+    inset: 12px;
+  }
+
+  .intro-screen::after {
+    font-size: 19px;
+    top: 13%;
+  }
+
+  .intro-screen h1 {
+    letter-spacing: 1px;
+  }
+}
